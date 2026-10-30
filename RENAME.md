@@ -13,20 +13,21 @@
 
 
 ## Some Rules must be followwed
-1. Please do NOT write your own part in the main file, for restoration:
+1. Please do NOT write your own part in the main file.Always write in your branches.
+2. Please do NOT modify any thing in main.cpp, for restoration:
 > git checkout origin/main -- main.cpp
 2. The way to name branches:**feature-xxx**
 4. Please always remark what you write
 5. Please do NOT put exe files and any other file which is not end up with .cpp into the file when PR 
 
 ## Instructon 
-# 1. 先拉最新main( pull the newest main )
-git pull origin main
-# 2. 新建自己功能分支( build the new branch)
-git checkout -b feature-add-staff
-# 3. 在 staff.h staff.cpp 这些文件里写功能，不要改main.cpp （ do NOT modify main.cpp）
-# 4. 写完 (when finshi)
-git add .
-git commit -m "这个就是写批注 feat: (write down the remark)"
-git push origin feature-add-staff
-# 5. 在网页点 Compare & pull request 发起PR ( PR on website )
+ 1. 先拉最新main( pull the newest main )
+>git pull origin main
+ 2. 新建自己功能分支( build the new branch)
+>git checkout -b feature_add_staff
+ 3. 在 staff.h staff.cpp 这些文件里写功能，不要改main.cpp （ do NOT modify main.cpp）
+ 4. 写完 (when finshi)
+>git add .
+>git commit -m "这个就是写批注 feat: (write down the remark)"
+>git push origin feature-add-staff
+ 5. 在网页点 Compare & pull request 发起PR ( PR on website )
