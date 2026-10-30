@@ -20,6 +20,6 @@ g++ main.cpp -o main.exe
 
 ## Some Rules must be follow
 1. Please do NOT write your own part in the main file;
-2. The way to name branches:==feature-xxx==
-3. For debug, name:==bugfix--xxx==
+2. The way to name branches:**feature-xxx**
+3. For debug, name:**bugfix--xxx**
 4. Please always remark what you write
