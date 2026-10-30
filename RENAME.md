@@ -11,15 +11,22 @@
 ##  项目简介
 一个员工名单管理系统，展示员工的各项信息，可查找，可加入，可删除，可编辑。
 
-## 编译 & 运行方式
-### Windows
-```bash
-g++ main.cpp -o main.exe
-./main.exe
-```
 
-## Some Rules must be follow
-1. Please do NOT write your own part in the main file;
+## Some Rules must be followwed
+1. Please do NOT write your own part in the main file, for restoration:
+> git checkout origin/main -- main.cpp
 2. The way to name branches:**feature-xxx**
-3. For debug, name:**bugfix--xxx**
 4. Please always remark what you write
+5. Please do NOT put exe files and any other file which is not end up with .cpp into the file when PR 
+
+## Instructon 
+# 1. 先拉最新main( pull the newest main )
+git pull origin main
+# 2. 新建自己功能分支( build the new branch)
+git checkout -b feature-add-staff
+# 3. 在 staff.h staff.cpp 这些文件里写功能，不要改main.cpp （ do NOT modify main.cpp）
+# 4. 写完 (when finshi)
+git add .
+git commit -m "这个就是写批注 feat: (write down the remark)"
+git push origin feature-add-staff
+# 5. 在网页点 Compare & pull request 发起PR ( PR on website )
