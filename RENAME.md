@@ -28,6 +28,9 @@
  3. 在 staff.h staff.cpp 这些文件里写功能，不要改main.cpp （ do NOT modify main.cpp）
  4. 写完 (when finshi)
 >git add .
+
 >git commit -m "这个就是写批注 feat: (write down the remark)"
+
 >git push origin feature-add-staff
+
  5. 在网页点 Compare & pull request 发起PR ( PR on website )
