@@ -5,7 +5,7 @@
 using namespace std;
 
 // Define maximum
-const int MAX_SIZE = 100;
+const int MAX_SIZE =100;
 
 // Declare parallel arrays
 string itemID[MAX_SIZE];
@@ -16,19 +16,18 @@ string gender[MAX_SIZE];
 int age[MAX_SIZE];
 string hireDate[MAX_SIZE];
 double monthlySalary[MAX_SIZE];
+int count =0; 
 
-int employeeCount = 0; 
-
-void loadEmployeeData(string filename);
+int readEmployeeData(string filename);
 void showMenu();
 
 // Main Function 
 int main() 
 {
-    cout << "[System] Program is starting..." << endl;
+    cout << "[System] Program is starting......" <<endl ;
 
-    //  Load data from employee.txt automatically at startup
-    loadEmployeeData("employee.txt");
+    //  Read data from employee.txt 
+    readEmployeeData("employee.txt");
 
     //Launch the interactive main menu
     showMenu();
@@ -36,68 +35,66 @@ int main()
     return 0;
 }
 
-// load employee data from text file
-void loadEmployeeData(string filename) 
+// Read employee data from text file
+int readEmployeeData(string filename) 
 {
-    ifstream file(filename);
+    ifstream inputFile(filename);
     
-    if (!file.is_open()) 
+    if (!inputFile) 
     {
-        cout << "Error: Unable to open file " << filename << ". NOT the same folder as the program!" << endl;
-        return;
+        cout << "[System] Error opening the file "<<filename << ". "<<endl ;
+        cout <<"[Cue] Check if it is in the same folder as the program." <<endl;
+        
+        return 1;
     }
 
     string line;
-    
-    getline(file, line);
+    getline(inputFile, line);
 
-    employeeCount = 0; 
-
-    while (getline(file, line)) 
+    while (getline(inputFile, line)) 
     {
         if (line.empty()) continue; 
 
-        if (!line.empty() && line.back() == '\r') 
-        {
-            line.pop_back();
-        }
+        if (!line.empty()&& line.back()== '\r') 
+            line.pop_back() ;
 
         stringstream ss(line);
-        string tempAge, tempSalary;
+        string tempAge,tempSalary ;
 
         try 
         {
-            getline(ss, itemID[employeeCount], '\t');
-            getline(ss, fullName[employeeCount], '\t');
-            getline(ss, jobTitle[employeeCount], '\t');
-            getline(ss, department[employeeCount], '\t');
-            getline(ss, gender[employeeCount], '\t');
+            getline(ss,itemID[count],'\t');
+            getline(ss,fullName[count], '\t');
+            getline(ss,jobTitle[count], '\t');
+            getline(ss,department[count], '\t');
+            getline(ss, gender[count],'\t');
             
-            getline(ss, tempAge, '\t');
-            if (!tempAge.empty()) 
-            {
-                age[employeeCount] = stoi(tempAge);
-            }
+            getline(ss,tempAge,'\t');
+            age[count] = stoi(tempAge);
 
-            getline(ss, hireDate[employeeCount], '\t');
+            getline(ss,hireDate[count], '\t');
             
-            getline(ss, tempSalary, '\t');
-            if (!tempSalary.empty()) 
-            {
-                monthlySalary[employeeCount] = stod(tempSalary);
-            }
+            getline(ss, tempSalary,'\t');
+            monthlySalary[count] =stod(tempSalary);
 
-            employeeCount++;
+            count++;
         } 
-        catch (const exception & e) 
+        catch (const exception &e ) 
         {
-            cout << "Error parsing line " << employeeCount + 1 << ": " << e.what() << endl;
+            cout<< "[System] Error line is "<<count +1 <<": "<< e.what() <<endl ;
         }
+    
+    
     }
 
-    file.close();
-    cout << "[System] Successfully loaded " << employeeCount << " employee records!" << endl;
+    inputFile.close();
+    
+    cout << "[System] Successfully loaded "<<count <<" employee records!" <<endl;
+
+    return 0;
+
 }
+
 
 
 // Main Menu Function
@@ -106,63 +103,62 @@ void showMenu()
     int choice;
     
     do {
-        // Display the menu interface
-        cout << "\n========================================" << endl;
-        cout << "       EMPLOYEE MANAGEMENT SYSTEM       " << endl;
-        cout << "========================================" << endl;
-        cout << "1. Display Employee Table" << endl;
-        cout << "2. Add New Employee" << endl;
-        cout << "3. Search Employee" << endl;
-        cout << "4. Delete Employee" << endl;
-        cout << "5. Update Employee Details" << endl;
-        cout << "6. Generate Statistics & Histograms" << endl;
-        cout << "7. Exit Program" << endl;
-        cout << "========================================" << endl;
+        cout << "\n========================================" <<endl;
+        cout << "       EMPLOYEE MANAGEMENT SYSTEM       " <<endl ;
+        cout << "========================================" <<endl ;
+        cout << "1. Display Employee Table"<<endl ;
+        cout << "2. Add New Employee"<<endl;
+        cout << "3. Search Employee" <<endl ;
+        cout << "4. Delete Employee"<<endl ;
+        cout << "5. Update Employee Details" <<endl ;
+        cout << "6. Generate Statistics & Histograms"<<endl;
+        cout << "7. Exit Program"<<endl;
+        cout << "========================================"<<endl;
         cout << "Please enter your choice (1-7): ";
         
         cin >> choice;
 
-        if (cin.fail()) 
+        if (!cin) 
         {
             cin.clear(); 
             cin.ignore(10000, '\n'); 
-            cout << "Invalid input! Please enter a valid number." << endl;
+            cout <<"Invalid input! Please enter a valid number."<<endl ;
             continue;
         }
 
         switch (choice) 
         {
             case 1:
-                cout << "\n[Executing] Display Table..." << endl;
+                cout <<"\n Display Table......"<<endl;
                 break;
                 
             case 2:
-                cout << "\n[Executing] Add Employee..." << endl;
+                cout <<"\nAdd Employee......" <<endl ;
                 break;
                 
             case 3:
-                cout << "\n[Executing] Search Employee..." << endl;
+                cout << "\nSearch Employee......"<<endl;
                 break;
                 
             case 4:
-                cout << "\n[Executing] Delete Employee..." << endl;
-                break;
+                cout <<"\nDelete Employee......"<<endl;
+                break ;
                 
             case 5:
-                cout << "\n[Executing] Update Employee..." << endl;
+                cout <<"\n Update Employee......" <<endl;
                 break;
                 
             case 6:
-                cout << "\n[Executing] Generate Statistics..." << endl;
-                break;
+                cout<<"\n Generate Statistics......"<<endl ;
+                break ;
                 
             case 7:
-                cout << "Exiting program. Goodbye!" << endl;
-                break;
+                cout <<"Exiting program. See you next time." <<endl;
+                break ;
                 
             default:
-                cout << "Invalid choice! Please choose between 1 and 7." << endl;
+                cout << "Invalid choice! Please choose between 1 and 7." <<endl;
         }
 
-    } while (choice != 7); 
+    } while(choice!= 7); 
 }
